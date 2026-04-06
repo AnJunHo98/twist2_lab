@@ -1,0 +1,35 @@
+root_path: ../../../../../GMR/motion_data/standing_transition_full
+motions:
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50009__50009_running_on_spot_stageii__20d4f043.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50021__50021_running_on_spot_stageii__2c2f060c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50002__50002_running_on_spot_stageii__67d8e13d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50020__50020_running_on_spot_stageii__7947e28b.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50027__50027_running_on_spot_stageii__91ec891c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50025__50025_running_on_spot_stageii__b9c2c07d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50026__50026_running_on_spot_stageii__4dd376d3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50007__50007_running_on_spot_stageii__94a80ab0.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50004__50004_running_on_spot_stageii__1a524dc3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/SSM__20160930_50032__running_on_the_spot_sync_stageii__7e9ae611.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50022__50022_running_on_spot_stageii__b6561d4d.pkl
+  weight: 1.0
+  description: general movement

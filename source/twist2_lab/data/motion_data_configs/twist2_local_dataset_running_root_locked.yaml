@@ -1,0 +1,314 @@
+root_path: ../../../../../GMR/motion_data/standing_transition_full
+motions:
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50009__50009_running_on_spot_stageii__20d4f043.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50021__50021_running_on_spot_stageii__2c2f060c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50002__50002_running_on_spot_stageii__67d8e13d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50020__50020_running_on_spot_stageii__7947e28b.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50027__50027_running_on_spot_stageii__91ec891c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50025__50025_running_on_spot_stageii__b9c2c07d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50026__50026_running_on_spot_stageii__4dd376d3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50007__50007_running_on_spot_stageii__94a80ab0.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50004__50004_running_on_spot_stageii__1a524dc3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/SSM__20160930_50032__running_on_the_spot_sync_stageii__7e9ae611.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/DFaust__50022__50022_running_on_spot_stageii__b6561d4d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub098__0003_treadmill_jog_stageii__e264db5f.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub048__0003_treadmill_jog_stageii__07464fd2.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub089__0003_treadmill_jog_stageii__a9aa7157.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub014__0004_treadmill_jog_stageii__84c60bac.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub057__0003_treadmill_jog_stageii__aa98bb41.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub095__0003_treadmill_jog_stageii__585fb6a2.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub010__0003_treadmill_jog_stageii__f6671573.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub066__0003_treadmill_jog_stageii__430d0f80.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub076__0003_treadmill_jog_stageii__5dd3442f.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub096__0003_treadmill_jog_stageii__1dbcf6f3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub081__0003_treadmill_jog_stageii__e53e91bd.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub002__0003_treadmill_jog_stageii__791e3f98.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub094__0003_treadmill_jog_stageii__491ca997.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub106__0003_treadmill_jog_stageii__067c4d18.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub044__0003_treadmill_jog_stageii__1e82d88b.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub105__0003_treadmill_jog_stageii__b1e989ce.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub059__0003_treadmill_jog_stageii__27ab9526.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub093__0003_treadmill_jog_stageii__653efbcf.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub051__0003_treadmill_jog_stageii__b4cd7ef4.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub029__0003_treadmill_jog_stageii__2dcfaca0.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub114__0003_treadmill_jog_stageii__d6243135.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub023__0003_treadmill_jog_stageii__a4571e3f.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub011__0003_treadmill_jog_stageii__568d173e.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub008__0003_treadmill_jog_stageii__a169c029.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub109__0003_treadmill_jog_stageii__782ae3a6.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub101__0003_treadmill_jog_stageii__08bd6baf.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub006__0003_treadmill_jog_stageii__5250d29c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub041__0003_treadmill_jog_stageii__7f024a50.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub112__0003_treadmill_jog_stageii__aaa2e58a.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub018__0003_treadmill_jog_stageii__1ae31d5a.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub022__0003_treadmill_jog_stageii__561c4715.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub108__0003_treadmill_jog_stageii__30ebf0c4.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub085__0003_treadmill_jog_stageii__02815a7b.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub086__0003_treadmill_jog_stageii__d8852d20.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub063__0003_treadmill_jog_stageii__5a6639b0.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub075__0003_treadmill_jog_stageii__50e1bb78.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub077__0003_treadmill_jog_stageii__5f008f21.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub092__0003_treadmill_jog_stageii__9dac1f8a.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub060__0003_treadmill_jog_stageii__8809e7d6.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub017__0003_treadmill_jog_stageii__4dd67352.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub067__0003_treadmill_jog_stageii__292f74df.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub047__0003_treadmill_jog_stageii__2a694b8e.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub007__0003_treadmill_jog_stageii__fc6cb57d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub031__0003_treadmill_jog_stageii__b8d9a401.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub090__0003_treadmill_jog_stageii__d5cac909.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub046__0003_treadmill_jog_stageii__cc9e5064.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub070__0003_treadmill_jog_stageii__2c222b29.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub016__0003_treadmill_jog_stageii__c73ffd5e.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub015__0003_treadmill_jog_stageii__b4ab63a7.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub035__0003_treadmill_jog_stageii__8fc78426.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub088__0003_treadmill_jog_stageii__cd89f939.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub071__0003_treadmill_jog_stageii__5920cc99.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub039__0003_treadmill_jog_stageii__543533d1.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub045__0003_treadmill_jog_stageii__145826af.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub100__0003_treadmill_jog_stageii__2a970a26.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub042__0003_treadmill_jog_stageii__c710362c.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub033__0003_treadmill_jog_stageii__f3e8e9ee.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub034__0003_treadmill_jog_stageii__1eba91b1.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub005__0003_treadmill_jog_stageii__c7bdfeff.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub036__0003_treadmill_jog_stageii__e7e1ce6b.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub097__0003_treadmill_jog_stageii__a59e8ccb.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub073__0003_treadmill_jog_stageii__3f83a33d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub068__0003_treadmill_jog_stageii__d5798f77.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub001__0003_treadmill_jog_stageii__3cd801c8.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub111__0003_treadmill_jog_stageii__425ee3ba.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub037__0003_treadmill_jog_stageii__377b8bd6.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub043__0003_treadmill_jog_stageii__21e40cb4.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub084__0003_treadmill_jog_stageii__af113a98.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub064__0003_treadmill_jog_stageii__bc9cf2eb.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub083__0003_treadmill_jog_stageii__37294bdf.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub080__0003_treadmill_jog_stageii__d54385a7.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub004__0003_treadmill_jog_stageii__0d5ad9fb.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub099__0003_treadmill_jog_stageii__ceea3ae8.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub072__0003_treadmill_jog_stageii__d882d9b0.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub074__0003_treadmill_jog_stageii__29f6951d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub009__0003_treadmill_jog_stageii__1542d928.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub003__0003_treadmill_jog_stageii__0c01dfb1.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub053__0003_treadmill_jog_stageii__84c3bb29.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub078__0003_treadmill_jog_stageii__cb8245f3.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub027__0003_treadmill_jog_stageii__20507723.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub069__0003_treadmill_jog_stageii__19061bab.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub065__0003_treadmill_jog_stageii__e9d64bc2.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub087__0003_treadmill_jog_stageii__687b7981.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub038__0003_treadmill_jog_stageii__4a9804ca.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub110__0003_treadmill_jog_stageii__7de482ab.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub102__0003_treadmill_jog_stageii__f315a362.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub103__0003_treadmill_jog_stageii__3ff67a04.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub056__0003_treadmill_jog_stageii__af9c46a4.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub050__0003_treadmill_jog_stageii__ec89b04d.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub026__0003_treadmill_jog_stageii__e9936405.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub061__0003_treadmill_jog_stageii__76771d10.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub052__0003_treadmill_jog_stageii__e72ae314.pkl
+  weight: 1.0
+  description: general movement
+- file: amass_igrisc_retarget_filtered_g1p5_sg11p3/BMLrub__rub058__0003_treadmill_jog_stageii__6ecbc3fa.pkl
+  weight: 1.0
+  description: general movement
