@@ -54,6 +54,8 @@ class IgrisBaseTeacherEnvCfg(IgrisMimicTeacherEnvCfg):
     rew_scale_track_dof_vel = 0.2
     rew_scale_track_key_body = 2.0
     rew_scale_track_key_body_global = 2.0
+    rew_scale_root_xy_drift = -0.5
+    rew_scale_key_body_global_drift = -0.25
     rew_scale_lin_vel_z = -1.0
     rew_scale_orientation = -1.0
     rew_scale_joint_acc = -5.0e-8

@@ -192,6 +192,21 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
                 "terminated",
             ]
         }
+        self._done_reason_names = (
+            "invalid_state",
+            "root_height",
+            "root_height_diff",
+            "tilt",
+            "max_root_lin_vel",
+            "pose_tracking",
+            "root_xy_tracking",
+            "contact",
+            "motion_end",
+            "time_limit",
+        )
+        self._done_reason_buffers = {
+            name: torch.zeros(self.num_envs, dtype=torch.bool, device=self.device) for name in self._done_reason_names
+        }
         if self._reference_marker_enabled:
             self._initialize_reference_markers()
 
@@ -213,6 +228,14 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
         if env_ids is None:
             return self.episode_length_buf * self.step_dt + self._motion_time_offsets
         return self.episode_length_buf[env_ids] * self.step_dt + self._motion_time_offsets[env_ids]
+
+    def _clear_done_reason_buffers(self, env_ids: torch.Tensor | None = None) -> None:
+        if env_ids is None:
+            for mask in self._done_reason_buffers.values():
+                mask.zero_()
+            return
+        for mask in self._done_reason_buffers.values():
+            mask[env_ids] = False
 
     def _motion_level_curriculum_progress(self) -> float:
         if not self.cfg.enable_motion_level_curriculum or self._max_motion_curriculum_level <= 1:
@@ -904,7 +927,7 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
         return reward
 
     def _get_dones(self) -> tuple[torch.Tensor, torch.Tensor]:
-        time_out = self.episode_length_buf >= self.max_episode_length - 1
+        time_limit = self.episode_length_buf >= self.max_episode_length - 1
         invalid_state = ~torch.isfinite(self.robot.data.root_pose_w).all(dim=1)
         invalid_state |= ~torch.isfinite(self.robot.data.joint_pos).all(dim=1)
         invalid_state |= ~torch.isfinite(self.robot.data.joint_vel).all(dim=1)
@@ -912,34 +935,67 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
         invalid_state |= ~torch.isfinite(self.robot.data.joint_acc).all(dim=1)
 
         motion_end = self._motion_times() >= self._motion_lib.get_motion_length(self._motion_ids)
+        motion_end_time_out = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
+        time_out = time_limit.clone()
         if getattr(self.cfg, "terminate_on_motion_end", False) and not self.sim.has_gui():
-            time_out |= motion_end
+            motion_end_time_out = motion_end
+            time_out |= motion_end_time_out
 
-        terminated = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         root_height = self.robot.data.root_link_pos_w[:, 2]
+        root_height_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if self.cfg.termination_root_height > 0.0:
-            terminated |= root_height < self.cfg.termination_root_height
+            root_height_fail = root_height < self.cfg.termination_root_height
+
+        root_height_diff_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if getattr(self.cfg, "termination_root_height_diff", 0.0) > 0.0:
-            terminated |= (self._ref_root_pos[:, 2] - root_height) > float(self.cfg.termination_root_height_diff)
+            root_height_diff_fail = (self._ref_root_pos[:, 2] - root_height) > float(self.cfg.termination_root_height_diff)
+
+        tilt_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if self.cfg.termination_tilt > 0.0:
             flat_orientation = torch.sum(torch.square(self.robot.data.projected_gravity_b[:, :2]), dim=1)
-            terminated |= flat_orientation > self.cfg.termination_tilt
+            tilt_fail = flat_orientation > self.cfg.termination_tilt
+
+        root_lin_vel_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if getattr(self.cfg, "termination_max_root_lin_vel", 0.0) > 0.0:
-            terminated |= (
+            root_lin_vel_fail = (
                 torch.linalg.vector_norm(self.robot.data.root_link_lin_vel_w, dim=1)
                 > float(self.cfg.termination_max_root_lin_vel)
             )
+
+        pose_tracking_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if getattr(self.cfg, "termination_pose_tracking_dist", 0.0) > 0.0:
             current_key_body_local = self._compute_current_key_body_local().reshape(
                 self.num_envs, self._num_teacher_key_bodies, 3
             )
             ref_key_body_local, _ = self._compute_reference_key_body_features()
             pose_error = torch.sum(torch.square(current_key_body_local - ref_key_body_local), dim=-1).amax(dim=1)
-            terminated |= pose_error > float(self.cfg.termination_pose_tracking_dist) ** 2
+            pose_tracking_fail = pose_error > float(self.cfg.termination_pose_tracking_dist) ** 2
+
+        root_xy_tracking_fail = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if getattr(self.cfg, "termination_root_pos_tracking_dist", 0.0) > 0.0:
             root_xy_error = torch.sum(torch.square(self.robot.data.root_link_pos_w[:, :2] - self._ref_root_pos[:, :2]), dim=1)
-            terminated |= root_xy_error > float(self.cfg.termination_root_pos_tracking_dist) ** 2
-        terminated |= invalid_state
+            root_xy_tracking_fail = root_xy_error > float(self.cfg.termination_root_pos_tracking_dist) ** 2
+
+        terminated = (
+            root_height_fail
+            | root_height_diff_fail
+            | tilt_fail
+            | root_lin_vel_fail
+            | pose_tracking_fail
+            | root_xy_tracking_fail
+            | invalid_state
+        )
+
+        self._done_reason_buffers["invalid_state"].copy_(invalid_state)
+        self._done_reason_buffers["root_height"].copy_(root_height_fail)
+        self._done_reason_buffers["root_height_diff"].copy_(root_height_diff_fail)
+        self._done_reason_buffers["tilt"].copy_(tilt_fail)
+        self._done_reason_buffers["max_root_lin_vel"].copy_(root_lin_vel_fail)
+        self._done_reason_buffers["pose_tracking"].copy_(pose_tracking_fail)
+        self._done_reason_buffers["root_xy_tracking"].copy_(root_xy_tracking_fail)
+        self._done_reason_buffers["contact"].zero_()
+        self._done_reason_buffers["motion_end"].copy_(motion_end_time_out)
+        self._done_reason_buffers["time_limit"].copy_(time_limit)
         return terminated, time_out
 
     def _reset_idx(self, env_ids: Sequence[int] | None):
@@ -994,6 +1050,39 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
             self._episode_sums[key][env_ids_tensor] = 0.0
         extras["Episode_Termination/terminated"] = torch.count_nonzero(self.reset_terminated[env_ids_tensor]).item()
         extras["Episode_Termination/time_out"] = torch.count_nonzero(self.reset_time_outs[env_ids_tensor]).item()
+        terminated_envs = self.reset_terminated[env_ids_tensor]
+        time_out_envs = self.reset_time_outs[env_ids_tensor]
+        terminated_reason_order = (
+            "invalid_state",
+            "root_height",
+            "root_height_diff",
+            "tilt",
+            "max_root_lin_vel",
+            "pose_tracking",
+            "root_xy_tracking",
+            "contact",
+        )
+        time_out_reason_order = ("motion_end", "time_limit")
+        for reason in terminated_reason_order:
+            reason_mask = self._done_reason_buffers[reason][env_ids_tensor] & terminated_envs
+            extras[f"Episode_TerminationReason/{reason}"] = torch.count_nonzero(reason_mask).item()
+        for reason in time_out_reason_order:
+            reason_mask = self._done_reason_buffers[reason][env_ids_tensor] & time_out_envs
+            extras[f"Episode_TerminationReason/{reason}"] = torch.count_nonzero(reason_mask).item()
+
+        remaining_terminated = terminated_envs.clone()
+        for reason in terminated_reason_order:
+            primary_mask = self._done_reason_buffers[reason][env_ids_tensor] & remaining_terminated
+            extras[f"Episode_TerminationPrimary/{reason}"] = torch.count_nonzero(primary_mask).item()
+            remaining_terminated &= ~primary_mask
+        extras["Episode_TerminationPrimary/unassigned"] = torch.count_nonzero(remaining_terminated).item()
+
+        remaining_time_out = time_out_envs.clone()
+        for reason in time_out_reason_order:
+            primary_mask = self._done_reason_buffers[reason][env_ids_tensor] & remaining_time_out
+            extras[f"Episode_TimeOutPrimary/{reason}"] = torch.count_nonzero(primary_mask).item()
+            remaining_time_out &= ~primary_mask
+        extras["Episode_TimeOutPrimary/unassigned"] = torch.count_nonzero(remaining_time_out).item()
         if self.cfg.motion_curriculum:
             extras["Curriculum/mean_motion_difficulty"] = self.mean_motion_difficulty
             extras["Curriculum/max_motion_difficulty"] = self.motion_difficulty.max().item()
@@ -1021,3 +1110,4 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
             )
         extras.update(eval_metrics)
         self.extras["log"] = extras
+        self._clear_done_reason_buffers(env_ids_tensor)

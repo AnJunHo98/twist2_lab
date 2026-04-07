@@ -106,6 +106,8 @@ class IgrisBaseTeacherEnv(IgrisMimicTeacherEnv):
         self._episode_sums["collision"] = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
         self._episode_sums["dof_torque_limits"] = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
         self._episode_sums["torque_penalty"] = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
+        self._episode_sums["root_xy_drift"] = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
+        self._episode_sums["key_body_global_drift"] = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
 
         penalized_contact_names = list(self.cfg.teacher_penalized_contact_body_names)
         termination_contact_names = list(self.cfg.teacher_termination_contact_body_names)
@@ -574,6 +576,8 @@ class IgrisBaseTeacherEnv(IgrisMimicTeacherEnv):
             "collision": torch.zeros(self.num_envs, dtype=torch.float32, device=self.device),
             "dof_torque_limits": torch.zeros(self.num_envs, dtype=torch.float32, device=self.device),
             "torque_penalty": torch.zeros(self.num_envs, dtype=torch.float32, device=self.device),
+            "root_xy_drift": torch.zeros(self.num_envs, dtype=torch.float32, device=self.device),
+            "key_body_global_drift": torch.zeros(self.num_envs, dtype=torch.float32, device=self.device),
         }
 
         foot_forces = self._contact_sensor.data.net_forces_w[:, self._teacher_foot_ids]
@@ -650,6 +654,18 @@ class IgrisBaseTeacherEnv(IgrisMimicTeacherEnv):
             torque_penalty = torch.sum(torch.square(self.robot.data.applied_torque[:, self._body_joint_ids]), dim=1)
             extra_rewards["torque_penalty"] = self.cfg.rew_scale_torque_penalty * torque_penalty * self.step_dt
 
+        if self.cfg.rew_scale_root_xy_drift != 0.0:
+            root_xy_error = torch.sum(torch.square(self.robot.data.root_link_pos_w[:, :2] - self._ref_root_pos[:, :2]), dim=1)
+            extra_rewards["root_xy_drift"] = self.cfg.rew_scale_root_xy_drift * root_xy_error * self.step_dt
+
+        if self.cfg.rew_scale_key_body_global_drift != 0.0:
+            _, ref_key_body_global = self._compute_reference_key_body_features()
+            current_key_body_global = self.robot.data.body_pos_w[:, self._teacher_key_body_ids]
+            key_body_global_error = torch.mean(torch.square(current_key_body_global - ref_key_body_global), dim=(1, 2))
+            extra_rewards["key_body_global_drift"] = (
+                self.cfg.rew_scale_key_body_global_drift * key_body_global_error * self.step_dt
+            )
+
         invalid_state = ~torch.isfinite(self.robot.data.root_pose_w).all(dim=1)
         invalid_state |= ~torch.isfinite(self.robot.data.joint_pos).all(dim=1)
         invalid_state |= ~torch.isfinite(self.robot.data.joint_vel).all(dim=1)
@@ -668,9 +684,12 @@ class IgrisBaseTeacherEnv(IgrisMimicTeacherEnv):
 
     def _get_dones(self) -> tuple[torch.Tensor, torch.Tensor]:
         terminated, time_out = super()._get_dones()
+        termination_contact = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         if self._teacher_termination_contact_ids.numel() > 0:
             termination_contact_forces = self._contact_sensor.data.net_forces_w[:, self._teacher_termination_contact_ids]
-            terminated |= torch.any(torch.norm(termination_contact_forces, dim=-1) > 1.0, dim=1)
+            termination_contact = torch.any(torch.norm(termination_contact_forces, dim=-1) > 1.0, dim=1)
+            terminated |= termination_contact
+        self._done_reason_buffers["contact"].copy_(termination_contact)
         return terminated, time_out
 
     def _reset_idx(self, env_ids: Sequence[int] | None):
