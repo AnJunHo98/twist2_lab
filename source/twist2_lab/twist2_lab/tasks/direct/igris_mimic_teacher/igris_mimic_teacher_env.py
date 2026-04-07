@@ -100,6 +100,14 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
                 f"Unsupported motion_level_curriculum_mode='{self.cfg.motion_level_curriculum_mode}'."
                 " Expected 'step' or 'success'."
             )
+        self._motion_curriculum_promotion_metric = str(
+            getattr(self.cfg, "motion_level_curriculum_promotion_metric", "cumulative")
+        ).lower()
+        if self._motion_curriculum_promotion_metric not in {"cumulative", "batch"}:
+            raise ValueError(
+                "Unsupported motion_level_curriculum_promotion_metric="
+                f"'{self.cfg.motion_level_curriculum_promotion_metric}'. Expected 'cumulative' or 'batch'."
+            )
         if self._motion_lib.num_dofs != self._num_body_joints:
             raise RuntimeError(
                 f"Motion DOF count ({self._motion_lib.num_dofs}) does not match IGRIS body joints ({self._num_body_joints})."
@@ -335,13 +343,16 @@ class IgrisMimicTeacherEnv(DirectRLEnv):
         self._motion_level_success_total = total_successes
         self._motion_level_success_count = total_episodes
         self._motion_level_success_rate = total_successes / float(total_episodes)
+        promotion_success_rate = self._motion_level_success_rate
+        if self._motion_curriculum_promotion_metric == "batch":
+            promotion_success_rate = self._motion_level_batch_success_rate
 
         min_level_episodes = max(1, int(self.cfg.motion_level_curriculum_min_level_episodes))
         success_rate_threshold = float(self.cfg.motion_level_curriculum_success_threshold)
         if (
             current_level < self._max_motion_curriculum_level
             and total_episodes >= min_level_episodes
-            and self._motion_level_success_rate >= success_rate_threshold
+            and promotion_success_rate >= success_rate_threshold
         ):
             self._motion_visible_level = min(self._motion_visible_level + 1, self._max_motion_curriculum_level)
             self._motion_level_success_rate = 0.0

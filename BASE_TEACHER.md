@@ -63,6 +63,18 @@ Recommended format:
 
 ## Change Log
 
+## 2026-04-07 12:55 KST
+- Why: batch-based promotion worked, but the previous `0.2` threshold advanced the curriculum too aggressively.
+- Change: raised the base teacher batch promotion threshold from `0.2` to `0.35`.
+- Test: not run by request; intended for the next long training run.
+- Result: pending long-run validation.
+
+## 2026-04-07 12:50 KST
+- Why: cumulative success rate kept the teacher at visible level `2` even when recent batches were already performing much better.
+- Change: made curriculum promotion metric configurable and switched the base teacher to `batch`-based promotion.
+- Test: `128` env, `20` iteration diagnostic run at `logs/rsl_rl/igris_base_teacher_direct/2026-04-07_12-51-17`.
+- Result: promotion worked immediately and the curriculum reached visible level `4` within the short test, which confirms the logic works but also suggests the current `0.2` threshold is likely too aggressive for batch-based promotion.
+
 ## 2026-04-07 11:12 KST
 - Why: after 500 iterations, local imitation improved a lot, but global root drift and global key-body drift were still visible.
 - Change: added explicit drift penalties for absolute root XY error and global key-body error in the base teacher reward.

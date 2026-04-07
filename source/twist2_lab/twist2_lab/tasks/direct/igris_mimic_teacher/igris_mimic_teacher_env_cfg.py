@@ -77,6 +77,7 @@ class IgrisMimicTeacherEnvCfg(DirectRLEnvCfg):
     action_scale = 0.5
     enable_motion_level_curriculum = False
     motion_level_curriculum_mode = "success"
+    motion_level_curriculum_promotion_metric = "cumulative"
     motion_level_curriculum_min = 1
     motion_level_curriculum_start_step = 0
     motion_level_curriculum_full_step = 20000

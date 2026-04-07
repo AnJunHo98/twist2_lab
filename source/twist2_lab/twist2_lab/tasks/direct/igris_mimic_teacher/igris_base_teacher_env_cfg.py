@@ -74,11 +74,12 @@ class IgrisBaseTeacherEnvCfg(IgrisMimicTeacherEnvCfg):
     rew_scale_terminated = -2.0
 
     # Keep the same tightened success gates that worked well during Isaac Lab migration.
+    motion_level_curriculum_promotion_metric = "batch"
     motion_level_curriculum_success_root_pos_threshold = 2.0
     motion_level_curriculum_success_dof_pos_threshold = 10.0
     motion_level_curriculum_success_key_body_local_threshold = 0.4
     motion_level_curriculum_success_completion = 0.1
-    motion_level_curriculum_success_threshold = 0.2
+    motion_level_curriculum_success_threshold = 0.35
     motion_level_curriculum_min_level_episodes = 64
 
     teacher_soft_torque_limit = 0.95
