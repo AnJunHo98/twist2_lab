@@ -26,9 +26,10 @@ This task is intended to be the closest Isaac Lab reproduction of the old TWIST2
 Short test:
 
 ```bash
-source /home/ex/miniconda3/etc/profile.d/conda.sh
+source ~/miniconda3/etc/profile.d/conda.sh  # adjust to your conda install
 conda activate isaac
-TERM=xterm /home/ex/IsaacLab/isaaclab.sh -p /home/ex/jh_ws/twist2_lab/scripts/rsl_rl/train.py \
+# run from the repository root; ISAACLAB_PATH points to your Isaac Lab checkout
+TERM=xterm "${ISAACLAB_PATH}"/isaaclab.sh -p scripts/rsl_rl/train.py \
   --task TWIST2-IGRIS-Base-Teacher-Direct-v0 \
   --num_envs 128 \
   --max_iterations 20 \
@@ -38,9 +39,10 @@ TERM=xterm /home/ex/IsaacLab/isaaclab.sh -p /home/ex/jh_ws/twist2_lab/scripts/rs
 Long run:
 
 ```bash
-source /home/ex/miniconda3/etc/profile.d/conda.sh
+source ~/miniconda3/etc/profile.d/conda.sh  # adjust to your conda install
 conda activate isaac
-TERM=xterm /home/ex/IsaacLab/isaaclab.sh -p /home/ex/jh_ws/twist2_lab/scripts/rsl_rl/train.py \
+# run from the repository root; ISAACLAB_PATH points to your Isaac Lab checkout
+TERM=xterm "${ISAACLAB_PATH}"/isaaclab.sh -p scripts/rsl_rl/train.py \
   --task TWIST2-IGRIS-Base-Teacher-Direct-v0 \
   --num_envs 1024 \
   --max_iterations 1000000 \
